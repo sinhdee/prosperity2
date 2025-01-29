@@ -3,15 +3,22 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const addUserToViews = require('./middleware/addUserToViews');
+const addUserToViews = require('./middleware/addUserToViews.js');
 require('dotenv').config();
-require('./config/database');
+require('./config/database.js');
+
 
 // Controllers
-const authController = require('./controllers/auth');
-const isSignedIn = require('./middleware/isSignedIn');
+const authController = require('./controllers/auth.js');
 
 const app = express();
+
+app.set('views', './views')
+app.set('view engine','ejs');
+// require our new middleware!
+const isSignedIn = require('./middleware/isSignedIn.js');
+const passUserToView = require('./middleware/addUserToViews.js');
+
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
 
@@ -38,7 +45,7 @@ app.use(addUserToViews);
 
 // Public Routes
 app.get('/', async (req, res) => {
-  res.render('index.ejs');
+  res.render('index');
 });
 
 app.use('/auth', authController);
@@ -46,14 +53,7 @@ app.use('/auth', authController);
 // Protected Routes
 app.use(isSignedIn);
 
-app.get('/protected', async (req, res) => {
-  if (req.session.user) {
-    res.send(`Welcome to the party ${req.session.user.username}.`);
-  } else {
-    res.sendStatus(404);
-    // res.send('Sorry, no guests allowed.');
-  }
-});
+app.use('/auth', authController);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
