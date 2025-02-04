@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-//models/user.js
-
 const applicationSchema = new mongoose.Schema({
   company: {
     type: String,
@@ -22,7 +20,7 @@ const applicationSchema = new mongoose.Schema({
     enum: ['interested', 'applied', 'interviewing', 'rejected', 'accepted'],
   },
 });
-  // properties of applications
+
 
 const userSchema = new mongoose.Schema({
   username: {

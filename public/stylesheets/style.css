@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     height: 100vh;
     width: 100vw;
-    background-color: #9ac2ef;
+    background-color: #A3262A;
   }
   
   /* public/stylesheets/style.css */
@@ -104,10 +104,10 @@ form {
   justify-content: space-evenly;
   width: 20em;
   height: 50%;
-  background-color: #f6e7e7;
+  background-color: #FF677D;
   padding: 30px 40px 20px 40px;
   border-radius: 20px;
-  color: #4b598e;
+  color: #FFE156;
   font-weight: bold;
 }
 
@@ -168,7 +168,7 @@ ul {
   
   ul > a {
     text-decoration: none;
-    color: #1c2e5b;
+    color: #F5AC27;
     width: 50%;
     background-color: #f6e7e7;
     border-radius: 30px;

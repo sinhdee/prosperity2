@@ -1,30 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <head>
-      <link rel="stylesheet" href="/stylesheets/style.css"> 
-    </head>    
-    <title>My Interviews</title>
-  </head>
-  <body>
-    <%- include('../partials/_navbar.ejs') %>
-<div class="all-apps-body">
-  <div class="all-apps-header">
-    <h1>My Interviews</h1>
-    <a class="add-interview-link" href="/users/<%=user._id%>/interviews/new"
-      >Add a new interview</a
-    >
-  </div>
-  <ul>
-    <% applications.forEach((application)=>{ %>
-    <a href="/users/<%= user._id %>/applications/<%= application._id %>">
-      <li><%= application.title %> at <%= application.company %></li>
-    </a>
-    <% }) %>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/interviews.css" />
+  <title>Interviews</title>
+</head>
+<body>
+<header>
+  <%- include('../partials/_navbar.ejs') %>
+</header>
+
+<div class="container">
+  <main class="main-column">
+    <h2>Interviews</h2>
+    <ul>
+     <% applications.forEach(application => {%>
+      <li>
+        <h3><%= application.title %> at <%= application.company %></h3>
+        <p><%= application.notes %></p>
+      </li>
+     <% }); %>
   </ul>
+  </main>
+
+  <aside class="right-sidebar">
+    <h3>Calender & To Do List</h3>
+  </aside>
 </div>
 </body>
 </html>

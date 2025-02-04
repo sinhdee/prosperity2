@@ -12,7 +12,7 @@ require('./config/database.js');
 // Controllers
 const applicationsController = require('./controllers/applications.js');
 const authController = require('./controllers/auth.js');
-
+const interviewsRouter = require('./routes/interviews');
 const app = express();
 
 app.set('views', './views')
@@ -61,7 +61,6 @@ app.get('/', (req, res) => {
   }
 });
 
-
 app.use('/auth', authController);
 
 // Protected Routes
@@ -69,7 +68,7 @@ app.use(isSignedIn);
 
 app.use('/auth', authController);
 app.use('/users/:userId/applications', applicationsController);
-
+app.use('/users/:userId/interviews', interviewsRouter);
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`The express app is ready on port ${port}!`);

@@ -1,0 +1,4 @@
+const getUserInterviews = async (userId) => {
+    
+}
+
