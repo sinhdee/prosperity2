@@ -15,7 +15,7 @@
   <main class="main-column">
     <h2>Interviews</h2>
     <ul>
-     <% applications.forEach(application => {%>
+     <% application.forEach(application => { %>
       <li>
         <h3><%= application.title %> at <%= application.company %></h3>
         <p><%= application.notes %></p>

@@ -1,18 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const applications = require('../models/user');
+const applications = require('../models/application');
 
-router.get('/users/:userId/interviews',async (req,res) => {
+router.get('/',async (req,res) => {
     try {
-        const applications = await applications.find({status: 'interviewing'})
-        res.render('interviews/index',{applications});
+        const application = await applications.find()
+        res.render('interviews/index',{application});
+        console.log()
     } catch (error){
         console.error(error)
         res.status(500).send("error fetching interviews");
     }
 });
-
-
 
 
 module.exports = router;

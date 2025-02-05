@@ -12,7 +12,7 @@ require('./config/database.js');
 // Controllers
 const applicationsController = require('./controllers/applications.js');
 const authController = require('./controllers/auth.js');
-const interviewsRouter = require('./routes/interviews');
+const interviewsRouter = require('./routes/interviews.js');
 const app = express();
 
 app.set('views', './views')
@@ -73,4 +73,5 @@ app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`The express app is ready on port ${port}!`);
 });
+
 

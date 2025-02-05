@@ -6,9 +6,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="/stylesheets/show.css" />
+
     <title><%= application.title %></title>
   </head>
 <body>
+  <div class="nav-links"><%- include('../partials/_navbar.ejs') %></div>
     <div class="show-body">
       <div class="show-header">
         <h1><%= application.title %> at <%= application.company %></h1>
