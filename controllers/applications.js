@@ -1,8 +1,6 @@
-// controllers/applications.js
 
 const express = require('express');
 const router = express.Router();
-
 const User = require('../models/user.js');
 
 router.get('/', async (req, res) => {
@@ -115,5 +113,20 @@ router.put('/:applicationId', async (req, res) => {
       res.redirect('/');
     }
   });
-   
+
+  router.put('/:applicationId', async (req, res) => {
+    try {
+      const currentUser = await User.findById(req.session.user._id);
+      
+      const application = currentUser.applications.id(req.params.applicationId);
+      
+      if (req.body.interviewDate){
+        application.interviewDate = new Date(req.body.interviewDate);
+      }
+      await currentUser.save(); 
+    } catch (error){
+      console.log(error);
+    }
+  });
+
 module.exports = router;

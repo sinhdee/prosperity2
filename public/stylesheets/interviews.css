@@ -29,15 +29,25 @@ padding: 20px;
 border-radius: 8px;
 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 color: #000;
+display: flex;
+flex-direction: row;
+gap:20px
+
 }
 
 .right-sidebar {
     background-color: #CC9902;
     padding: 10px;
     border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 h1, h2, h3 {
     margin-bottom: 20px;
 }
 
+.interview-box {
+    display: flex;
+    flex-direction: row;
+}
