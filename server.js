@@ -7,8 +7,7 @@ const addUserToViews = require('./middleware/addUserToViews.js');
 const isSignedIn = require('./middleware/isSignedIn.js');
 require('dotenv').config();
 require('./config/database.js');
-
-
+const todoRoutes = require('./routes/todo')
 // Controllers
 const applicationsController = require('./controllers/applications.js');
 const authController = require('./controllers/auth.js');
@@ -25,7 +24,7 @@ const port = process.env.PORT ? process.env.PORT : '3000';
 // MIDDLEWARE
 
 // Middleware to parse URL-encoded data from forms
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride('_method'));
 
@@ -47,7 +46,7 @@ app.use(
 );
 
 app.use(addUserToViews);
-
+app.use(todoRoutes)
 // Public Routes
 
 app.get('/', (req, res) => {
@@ -74,5 +73,8 @@ app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`The express app is ready on port ${port}!`);
 });
+
+
+
 
 

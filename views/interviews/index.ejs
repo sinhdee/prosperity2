@@ -61,10 +61,20 @@
     <% } %>
   </div>
   </main>
-
+  <a class="add-todo" href="/add-todo"
+  >Add a Todo</a>
   <div class="right-sidebar">
-    <%- include('../todo-list/todo.ejs') %>
-  </div>
-</div>
+      <div class="container">
+        <div class="to-do app">
+            <h2>To-Do List</h2>
+            <ul>
+                <% todos.forEach(todo => { %>
+                <li>
+                    <%= todo.name %> 
+                    <%= todo.completed ? 'Y' : 'N' %>
+                </li>
+            <%}); %>
+            </ul>
+    </div>
 </body>
 </html>

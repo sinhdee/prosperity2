@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width", initial-scale="1">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="/stylesheets/todo.css">
+</head>
+<body>
+    <div class="container">
+        <div class="to-do app">
+            <h2>To-Do List</h2>
+            <a href="/add-todo">Add a new todo</a>
+            <ul>
+                <% todos.forEach(todo => { %>
+                <li>
+                    <%= todo.name %> 
+                    <%= todo.completed ? 'Y' : 'N' %>
+                </li>
+            <%}); %>
+            </ul>
+    </div>
+    </div>
+</body>
+</html>
