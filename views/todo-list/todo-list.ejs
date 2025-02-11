@@ -8,14 +8,11 @@
 <body>
     <div class="container">
         <div class="to-do app">
-            <h2>To-Do List</h2>
+            <h2>Tasks</h2>
             <a href="/add-todo">Add a new todo</a>
             <ul>
                 <% todos.forEach(todo => { %>
-                <li>
                     <%= todo.name %> 
-                    <%= todo.completed ? 'Y' : 'N' %>
-                </li>
             <%}); %>
             </ul>
     </div>

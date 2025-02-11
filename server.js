@@ -7,7 +7,22 @@ const addUserToViews = require('./middleware/addUserToViews.js');
 const isSignedIn = require('./middleware/isSignedIn.js');
 require('dotenv').config();
 require('./config/database.js');
-const todoRoutes = require('./routes/todo')
+const todoRoutes = require('./routes/todo');
+const resourcesRouter = require('./routes/resources');
+
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({storage})
+
+
 // Controllers
 const applicationsController = require('./controllers/applications.js');
 const authController = require('./controllers/auth.js');
@@ -74,7 +89,20 @@ app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
 
+app.use('/', resourcesRouter)
 
+app.post('/api/upload',upload.single('file1'),  (req,res) => {
+  res.json(req.file)
+})
 
+app.post('/api/upload',upload.single('file2'),  (req,res) => {
+  res.json(req.file)
+})
+app.post('/api/upload',upload.single('file3'),  (req,res) => {
+  res.json(req.file)
+})
+app.post('/api/upload',upload.single('file4'),  (req,res) => {
+  res.json(req.file)
+})
 
-
+app.use('/uploads',express.static('uploads'));

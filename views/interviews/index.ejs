@@ -16,7 +16,7 @@
     <h2>Role & Company</h2>
     <div class="interview-box">
     <% if (applications.length >0) { %>
-    <ul>
+    <ul type="none">
       <% applications.forEach((application)=>{ %>
           <li><%= application.title %> at <%= application.company %></li>
         <% }) %>
@@ -28,7 +28,7 @@
   <div class="interview-box">
     <h2>Status</h2>
     <% if (applications.length >0) { %>
-      <ul>
+      <ul type="none">
         <% applications.forEach((application)=>{ %>
             <li><%= application.status %> </li>
           <% }) %>
@@ -39,7 +39,7 @@
   <div class="interview-box">
     <h2>Date & Time of Interview</h2>
     <% if (applications.length >0) { %>
-      <ul>
+      <ul type="none">
         <% applications.forEach((application)=>{ %>
             <li><%= application.interviewDate %> </li>
           <% }) %>
@@ -51,7 +51,7 @@
   <div class="interview-box">
     <h2>Notes</h2>
     <% if (applications.length >0) { %>
-      <ul>
+      <ul type="none">
         <% applications.forEach((application)=>{ %>
             <li><%= application.notes %> </li>
           <% }) %>
@@ -66,12 +66,21 @@
   <div class="right-sidebar">
       <div class="container">
         <div class="to-do app">
-            <h2>To-Do List</h2>
-            <ul>
-                <% todos.forEach(todo => { %>
-                <li>
-                    <%= todo.name %> 
-                    <%= todo.completed ? 'Y' : 'N' %>
+            <h2>Tasks</h2>
+            <ul type="none">
+              <% todos.forEach(todo => { %>
+                <li style="text-decoration: <%= todo.completed ? 'line-through' : 'none' %>">
+                  <%= todo.name %> 
+
+                  <form action="/todos/<%= todo._id %>?_method=PUT" method="POST">
+                    <input type="checkbox" name="completed" <%= todo.completed ? 'checked' : '' %> onclick='this.form.submit()'>
+                </form>
+
+            
+
+                    <form action="/todos/<%=todo._id %>?_method=Delete" method="POST">
+                        <button type="submit" onclick="return confirm('want to delete this?')">Delete</button>
+                    </form>
                 </li>
             <%}); %>
             </ul>

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Your Resources</title>
+    <%- include('../partials/_navbar.ejs') %>
+  </head>
+<body class="index-body">
+
+ <form action="/api/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file1" id="actual-btn1" hidden/>
+    <label for="actual-btn1">Choose a File</label>
+    <button type="submit">Upload File 1</button>
+</form>
+<div id="image-container">
+<h1>uploaded file</h1>
+<script>
+    fetch('/uploads').then(Response => response.json()).then(files => {
+        const imageContainer = document.getElementById('image-container');
+        files.forEach(file => {
+        const img = document.createElement('img')
+        img.src ='/uploads/' + file;
+        img.alt = file;   
+        imageContainer.appendChild(img)
+        });
+    });
+</script>
+</div>
+
+<form action="/api/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file2" id="actual-btn2" hidden/>
+    <label for="actual-btn2">Choose a File</label>
+    <button type="submit">Upload File 2</button>
+</form>
+   
+<form action="/api/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file3" id="actual-btn3" hidden/>
+    <label for="actual-btn3">Choose a File</label>
+    <button type="submit">Upload File 3</button>
+</form>
+
+<form action="/api/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file4" id="actual-btn4" hidden/>
+    <label for="actual-btn4">Choose a File</label>
+    <button type="submit">Upload File 4</button>
+</form>
+
+  </body>
+  
