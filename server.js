@@ -9,23 +9,12 @@ require('dotenv').config();
 require('./config/database.js');
 const todoRoutes = require('./routes/todo');
 const resourcesRouter = require('./routes/resources');
-
-const multer = require('multer');
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname)
-  }
-})
-
-const upload = multer({storage})
-
+const uploadMiddleware = require("./middleware/uploadMiddleware.js");
 
 // Controllers
 const applicationsController = require('./controllers/applications.js');
 const authController = require('./controllers/auth.js');
+const filesCtrl = require('./controllers/files.js')
 const interviewsRouter = require('./routes/interviews.js');
 const app = express();
 
@@ -47,6 +36,9 @@ app.use(morgan('dev'));
 
 const path = require('path');
 
+const upload = uploadMiddleware("uploads");
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
@@ -62,6 +54,11 @@ app.use(
 
 app.use(addUserToViews);
 app.use(todoRoutes)
+app.use((req,res,next) =>{
+  res.locals.uploadedFiles ={};
+  next();
+});
+
 // Public Routes
 
 app.get('/', (req, res) => {
@@ -90,19 +87,3 @@ app.listen(port, () => {
 });
 
 app.use('/', resourcesRouter)
-
-app.post('/api/upload',upload.single('file1'),  (req,res) => {
-  res.json(req.file)
-})
-
-app.post('/api/upload',upload.single('file2'),  (req,res) => {
-  res.json(req.file)
-})
-app.post('/api/upload',upload.single('file3'),  (req,res) => {
-  res.json(req.file)
-})
-app.post('/api/upload',upload.single('file4'),  (req,res) => {
-  res.json(req.file)
-})
-
-app.use('/uploads',express.static('uploads'));
