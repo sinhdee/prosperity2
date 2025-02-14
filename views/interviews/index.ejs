@@ -14,21 +14,21 @@
   <main class="main-column">
     <div class="interview-box">
     <h2>Role & Company</h2>
-    <% if (applications.length >0) { %>
-    <ul type="none">
-      <% applications.forEach((application)=>{ %>
+    <% if (applications.length > 0) { %>
+    <ul style="list-style-type: none;">
+      <% applications.forEach((application) => { %>
           <li><%= application.title %> at <%= application.company %></li>
         <% }) %>
-  </ul>
-  <% } else {%>
+    </ul> 
+    <% } else {%>
     <p>no interviews</p>
-  <% } %>
-  </div>
+    <% } %>
+    </div>
 
   <div class="interview-box">
     <h2>Status</h2>
     <% if (applications.length >0) { %>
-      <ul type="none">
+      <ul style="list-style-type: none;">
         <% applications.forEach((application)=>{ %>
             <li><%= application.status %> </li>
           <% }) %>
@@ -41,7 +41,7 @@
   <div class="interview-box">
     <h2>Date & Time of Interview</h2>
     <% if (applications.length >0) { %>
-      <ul type="none">
+      <ul style="list-style-type: none;">
         <% applications.forEach((application)=>{ %>
             <li><%= application.interviewDate %> </li>
           <% }) %>
@@ -54,7 +54,7 @@
   <div class="interview-box">
     <h2>Notes</h2>
     <% if (applications.length >0) { %>
-      <ul type="none">
+      <ul style="list-style-type: none;">
         <% applications.forEach((application)=>{ %>
             <li><%= application.notes %> </li>
           <% }) %>
@@ -70,22 +70,22 @@
             <h2>Tasks</h2>
             <ul>
               <% todos.forEach(todo => { %>
-                <li style="text-decoration: <%= todo.completed ? 'line-through' : 'none' %>">
-                  <%= todo.name %> 
-<div class="todo-task">
-                  <form action="/todos/<%= todo._id %>?_method=PUT" method="POST">
-                    <input type="checkbox" name="completed" <%= todo.completed ? 'checked' : '' %> onclick='this.form.submit()'>
-                </form>
-                <a class="add-todo" href="/add-todo">Add a Todo</a>
-                    <form action="/todos/<%=todo._id %>?_method=Delete" method="POST">
-                        <button type="submit" onclick="return confirm('want to delete this?')">DELETE</button>
+                <li style="text-decoration: <%= todo.completed ? 'line-through' : 'none' %>;">
+                  <%= todo.name %>
+                  <div class="todo-task">
+                    <form action="/todos/<%= todo._id %>?_method=PUT" method="POST">
+                      <input type="checkbox" name="completed" <%= todo.completed ? 'checked' : '' %> onclick='this.form.submit()'>
+                    </form>
+                    <a class="add-todo" href="/add-todo">Add a Todo</a>
+                    <form action="/todos/<%= todo._id %>?_method=DELETE" method="POST">
+                      <button type="submit" onclick="return confirm('Want to delete this?')">DELETE</button>
                     </form>
                   </div>
                 </li>
-            <%}); %>
-            </ul>
+              <% }); %>
+            </ul>            
             </div>
-            </div>
+        </div>
     </div>
 </body>
 </html>
