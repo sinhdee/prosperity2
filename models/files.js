@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const filesSchema = new mongoose.Schema({
-    image: {
+   image: {
         url: { type: String, required: true }, 
         cloudinary_id: { type: String, required: true }, 
       }

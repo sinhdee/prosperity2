@@ -3,31 +3,32 @@ const upload = require('../config/multer');
 const { uploader } = require('../config/cloudinary');
 const router = express.Router();
 
-router.post('/files', upload.fields([
-    {name: 'imgUrl1', maxCount:1},
-    {name: 'imgUrl2', maxCount:1},
-    {name: 'imgUrl3', maxCount:1},
-    {name: 'imgUrl4', maxCount:1},
-]), async (req,res) => {
-    try{
-const uploadedFiles = {};
-
-for (const field of ['imgUrl1','imgUrl2','imgUrl3','imgUrl4']) {
-    if (req.files[field]) {
-        const file = req.files[field][0];
-        const results = await cloudinary_js_config.uploader.upload(file.path);
-
-        uploadedFiles[field] = results.secure.url;
+const createFiles = async (req, res) => {
+    console.log(req.file)
+    try {
+        // req.body.owner = req.session.user._id
+        req.body.imgUrl = {
+            url: req.file.path, // Cloudinary URL
+            cloudinary_id: req.file.filename, // Cloudinary public ID
         }
-}
-res.locals.uploadedFiles = uploadedFiles;
+        req.body.owner = req.params.userId
+        await Listing.create(req.body)
+        res.redirect('/files')
+    } catch (error) {
+        console.log(error)
 
-res.render('resources/index');
-} catch (error) {
-    console.error('error uploading to cloudinary', error);
-    res.status(500).send('error uploading this file')
+    }
 }
-});
+app.post('/files/:userId', upload.single("imgUrl"), filesCtrl.createListing)
+// router.post('/files', upload.single('file'), (req,res) => {
+//     if (!req.file){
+//         return res.status(400).json({error:"no file uploaded"});
+//     }
+//     const fileUrl = req.file.path;
+//     res.status(200).json({sucess:true, fileUrl});
+// })
 
 
 module.exports = router
+
+module.exports = {createFiles}

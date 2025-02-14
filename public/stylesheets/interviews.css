@@ -3,13 +3,17 @@
 margin: 0;
 padding: 0;
 box-sizing: border-box;
-background-image: url('https://i.imgur.com/0pCgRwL.png');
 font-family: 'Poppins', sans-serif;
 }
 
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    background-image: url('https://i.imgur.com/0pCgRwL.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100vw;
 }
 
 header {
@@ -26,7 +30,7 @@ margin: 20px;
 
 .main-column {
 flex: 3;
-background-color: #F5AC27;
+background-color: #A3262A;
 padding: 5px;
 border-radius: 8px;
 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -44,6 +48,7 @@ gap:20px
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.1);
 }
 
 h1, h2, h3 {
@@ -89,5 +94,26 @@ h1, h2, h3 {
 
 h2 {
     color: #fff;
+}
+
+.add-todo {
+color: #A3262A;
+}
+
+.todo-task {
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+
+.complete-task{
+    display: flex;
+    flex-direction: row;
+}
+
+.row-container{
+    display: flex;
+    flex-direction: column;
+
 }
 

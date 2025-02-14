@@ -10,11 +10,11 @@ require('./config/database.js');
 const todoRoutes = require('./routes/todo');
 const resourcesRouter = require('./routes/resources');
 const uploadMiddleware = require("./middleware/uploadMiddleware.js");
+const upload = require("./config/multer.js"); // Import Multer
 
 // Controllers
 const applicationsController = require('./controllers/applications.js');
 const authController = require('./controllers/auth.js');
-const filesCtrl = require('./controllers/files.js')
 const interviewsRouter = require('./routes/interviews.js');
 const app = express();
 
@@ -35,9 +35,6 @@ app.use(methodOverride('_method'));
 app.use(morgan('dev'));
 
 const path = require('path');
-
-const upload = uploadMiddleware("uploads");
-
 
 app.use(express.static(path.join(__dirname, 'public')));
 

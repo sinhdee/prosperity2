@@ -10,7 +10,6 @@
 <header>
   <%- include('../partials/_navbar.ejs') %>
 </header>
-
 <div class="container">
   <main class="main-column">
     <div class="interview-box">
@@ -64,10 +63,7 @@
       <p>no notes</p>
     <% } %>
   </div>
-
-  <a class="add-todo" href="/add-todo">Add a Todo</a>
   </main>
-
   <div class="right-sidebar">
       <div class="container">
         <div class="to-do app">
@@ -76,13 +72,15 @@
               <% todos.forEach(todo => { %>
                 <li style="text-decoration: <%= todo.completed ? 'line-through' : 'none' %>">
                   <%= todo.name %> 
-
+<div class="todo-task">
                   <form action="/todos/<%= todo._id %>?_method=PUT" method="POST">
                     <input type="checkbox" name="completed" <%= todo.completed ? 'checked' : '' %> onclick='this.form.submit()'>
                 </form>
+                <a class="add-todo" href="/add-todo">Add a Todo</a>
                     <form action="/todos/<%=todo._id %>?_method=Delete" method="POST">
-                        <button type="submit" onclick="return confirm('want to delete this?')">Delete</button>
+                        <button type="submit" onclick="return confirm('want to delete this?')">DELETE</button>
                     </form>
+                  </div>
                 </li>
             <%}); %>
             </ul>
