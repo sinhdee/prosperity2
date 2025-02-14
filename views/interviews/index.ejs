@@ -70,7 +70,6 @@
             <h2>Tasks</h2>
             <ul>
               <% todos.forEach(todo => { %>
-                <li style="text-decoration: <%= todo.completed ? 'line-through' : 'none' %>;">
                   <%= todo.name %>
                   <div class="todo-task">
                     <form action="/todos/<%= todo._id %>?_method=PUT" method="POST">
