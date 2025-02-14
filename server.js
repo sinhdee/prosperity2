@@ -69,9 +69,6 @@ app.get('/', (req, res) => {
   }
 });
 
-
-app.use('/auth', authController);
-
 // Protected Routes
 app.use(isSignedIn);
 
