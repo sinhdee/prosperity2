@@ -1,6 +1,6 @@
 
 const express = require('express');
-const router = express();
+const router = express.Router();
 const User = require('../models/user.js');
 
 router.get('/', async (req, res) => {
@@ -90,24 +90,43 @@ router.delete('/:applicationId', async (req, res) => {
     }
   });
 
+// controllers/applications.js`
+
 router.put('/:applicationId', async (req, res) => {
-  try {
-    const currentUser = await User.findById(req.session.user._id);
-    
-    const application = currentUser.applications.id(req.params.applicationId);
-    
-    application.set(req.body);
-
-    if (req.body.interviewDate) {
-      application.interviewDate = new Date(req.body.interviewDate);
+    try {
+      // Find the user from req.session
+      const currentUser = await User.findById(req.session.user._id);
+      // Find the current application from the id supplied by req.params
+      const application = currentUser.applications.id(req.params.applicationId);
+      // Use the Mongoose .set() method
+      // this method updates the current application to reflect the new form
+      // data on `req.body`
+      application.set(req.body);
+      // Save the current user
+      await currentUser.save();
+      // Redirect back to the show view of the current application
+      res.redirect(
+        `/users/${currentUser._id}/applications/${req.params.applicationId}`
+      );
+    } catch (error) {
+      console.log(error);
+      res.redirect('/');
     }
-    await currentUser.save();
-    res.redirect(`/users/${currentUser._id}/applications/${req.params.applicationId}`);
-  } catch (error) {
-    console.log(error);
-    res.redirect('/');
-  }
-});
+  });
 
+  router.put('/:applicationId', async (req, res) => {
+    try {
+      const currentUser = await User.findById(req.session.user._id);
+      
+      const application = currentUser.applications.id(req.params.applicationId);
+      
+      if (req.body.interviewDate){
+        application.interviewDate = new Date(req.body.interviewDate);
+      }
+      await currentUser.save(); 
+    } catch (error){
+      console.log(error);
+    }
+  });
 
 module.exports = router;
