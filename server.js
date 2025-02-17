@@ -9,8 +9,8 @@ require('dotenv').config();
 require('./config/database.js');
 const todoRoutes = require('./routes/todo');
 const resourcesRouter = require('./routes/resources');
-const uploadMiddleware = require("./middleware/uploadMiddleware.js");
-const upload = require("./config/multer.js"); // Import Multer
+// const uploadMiddleware = require("./middleware/uploadMiddleware.js");
+// const upload = require("./config/multer.js"); // Import Multer
 
 // Controllers
 const applicationsController = require('./controllers/applications.js');
