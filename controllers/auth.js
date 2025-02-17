@@ -39,7 +39,8 @@ router.post('/sign-up', async (req, res) => {
     _id: newUser._id,
   };
 
-  req.session.save(() => {
+  req.session.save((err) => {
+    if (err) console.log('session save error', err);
     res.redirect('/');
   });
 });

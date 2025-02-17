@@ -68,11 +68,11 @@ app.get('/', (req, res) => {
     res.render('index.ejs');
   }
 });
+app.use('/auth', authController);
 
 // Protected Routes
 app.use(isSignedIn);
 
-app.use('/auth', authController);
 app.use('/users/:userId/applications', applicationsController);
 app.use('/users/:userId/interviews', interviewsRouter);
 app.listen(port, () => {
