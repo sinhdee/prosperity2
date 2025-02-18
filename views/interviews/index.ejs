@@ -68,6 +68,7 @@
       <div class="container">
         <div class="to-do app">
             <h2>Tasks</h2>
+            <a class="add-todo" href="/add-todo">Add a Todo</a>
             <ul>
               <% todos.forEach(todo => { %>
                   <%= todo.name %>
@@ -75,14 +76,15 @@
                     <form action="/todos/<%= todo._id %>?_method=PUT" method="POST">
                       <input type="checkbox" name="completed" <%= todo.completed ? 'checked' : '' %> onclick='this.form.submit()'>
                     </form>
-                    <a class="add-todo" href="/add-todo">Add a Todo</a>
+                    <a class="update-todo" href="/todos/edit/<%= todo._id %>">Update this Todo</a>
                     <form action="/todos/<%= todo._id %>?_method=DELETE" method="POST">
                       <button type="submit" onclick="return confirm('Want to delete this?')">DELETE</button>
                     </form>
+                    
                   </div>
                 </li>
               <% }); %>
-            </ul>            
+            </ul>     
             </div>
         </div>
     </div>

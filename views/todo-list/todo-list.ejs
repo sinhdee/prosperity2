@@ -3,13 +3,15 @@
 <head>
     <meta name="viewport" content="width=device-width", initial-scale="1">
     <title>To Do List</title>
-    <link rel="stylesheet" href="/public/stylesheets/interviews.css">
-</head>
+    <link rel="stylesheet" href="/stylesheets/resources.css" />
 <body>
+    <%- include('../partials/_navbar.ejs') %>
     <div class="container">
         <div class="to-do app">
             <h2>Tasks</h2>
+            <button >
             <a href="/add-todo">Add a new todo</a>
+        </button>
             <ul>
                 <% todos.forEach(todo => { %>
                     <%= todo.name %> 

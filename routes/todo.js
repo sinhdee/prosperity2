@@ -49,9 +49,20 @@ router.get('/todos', async (req,res)=>{
         const completed = req.body.completed === 'on'
 
         await Todo.findByIdAndUpdate(todoId, {completed})
-        res.redirect('/users/${userId}/interviews')
+        res.redirect('/todos')
     } catch (error){
         console.error(500).send('Error in updating the to-do')
     }
  });
-module.exports = router;
+
+ router.get('/todos/edit/:id', async (req, res) => {
+    try {
+        const todo = await Todo.findById(req.params.id);
+        res.render('todo-list/edit', { todo: todo });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error fetching todo');
+    }
+ });
+ module.exports = router;
+ 

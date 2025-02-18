@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Todo</title>
-    <link rel="stylesheet" href="/public/stylesheets/style.css">
-</head>
+    <link rel="stylesheet" href="/stylesheets/todo.css" /></head>
+    <%- include('../partials/_navbar.ejs') %>
 <body>
     <h1>Add a new todo</h1>
+    <div class="center">
     <form action="/todos" method="POST">
+
         <label for="name">Todo Input</label>
         <input type="text" id="name" name="name"required><br>
-
+   
         <label for="completed">completed</label>
         <input type="checkbox" id="completed" name="completed"><br>
 
         <button type="submit">Add to do</button>
     </form>
+</div>
     <a href="/todos">Back to List</a>
 </body>
 </html>
