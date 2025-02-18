@@ -9,10 +9,7 @@ require('dotenv').config();
 require('./config/database.js');
 const todoRoutes = require('./routes/todo');
 const resourcesRouter = require('./routes/resources');
-// const uploadMiddleware = require("./middleware/uploadMiddleware.js");
-// const upload = require("./config/multer.js"); // Import Multer
 
-// Controllers
 const applicationsController = require('./controllers/applications.js');
 const authController = require('./controllers/auth.js');
 const interviewsRouter = require('./routes/interviews.js');
@@ -22,12 +19,9 @@ app.set('views', './views')
 app.set('view engine','ejs');
 
 
-// Set the port from environment variable or default to 3000
+
 const port = process.env.PORT ? process.env.PORT : '3000';
 
-// MIDDLEWARE
-
-// Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride('_method'));
@@ -56,27 +50,19 @@ app.use((req,res,next) =>{
   next();
 });
 
-// Public Routes
-
 app.get('/', (req, res) => {
-  // Check if the user is signed in
   if (req.session.user) {
-    // Redirect signed-in users to their applications index
     res.redirect(`/users/${req.session.user._id}/applications`);
   } else {
-    // Show the homepage for users who are not signed in
     res.render('index.ejs');
   }
 });
+
 app.use('/auth', authController);
-
-// Protected Routes
 app.use(isSignedIn);
-
 app.use('/users/:userId/applications', applicationsController);
 app.use('/users/:userId/interviews', interviewsRouter);
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`The express app is ready on port ${port}!`);
 });
 

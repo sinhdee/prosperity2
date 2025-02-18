@@ -2,12 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Todo = require ('../models/todo')
 
-//show todo form
 router.get('/add-todo', async (req,res) =>{
         res.render('todo-list/new')
 });
 
-//form submission 
 router.post('/todos', async (req,res) => {
     try {
         const {name, completed} = req.body
@@ -25,7 +23,6 @@ router.post('/todos', async (req,res) => {
     }
 });
 
-//this shows the todo list 
 router.get('/todos', async (req,res)=>{
     try{
         const todos = await Todo.find()

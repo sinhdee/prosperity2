@@ -6,7 +6,7 @@ function uploadMiddleware(folderName) {
   const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: (req, file) => {
-      const folderPath = `${folderName.trim()}`; // Update the folder path here
+      const folderPath = `${folderName.trim()}`; 
       const fileExtension = path.extname(file.originalname).substring(1);
       const publicId = `${file.fieldname}-${Date.now()}`;
       
@@ -21,7 +21,7 @@ function uploadMiddleware(folderName) {
   return multer({
     storage: storage,
     limits: {
-      fileSize: 5 * 1024 * 1024, // keep images size < 5 MB
+      fileSize: 5 * 1024 * 1024, 
     },
   });
 }

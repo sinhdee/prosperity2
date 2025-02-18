@@ -54,7 +54,6 @@ const createUser = async () => {
     console.log('Updated document:', updatedTodo);
   };
   
-/*------------------------------- Run Queries -------------------------------*/
 
 const runQueries = async () => {
   console.log('Queries running.');
