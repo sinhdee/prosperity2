@@ -1,4 +1,4 @@
-Screenshot/Logo: 
+Screenshot/Logo: https://imgur.com/a/PKzs5I4
 
 Prosperity is a  job application tracker! Used to get you organized and less stressed about the job hunt! Prosperity was designed to keep users organized and motivated during a time that can be mentally exhausting! Prosperity currently holds features such as job applicatioin tracker, to-do list, and also a place where you can store important files that you need to access!
 

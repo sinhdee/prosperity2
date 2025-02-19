@@ -15,7 +15,6 @@ const createFiles = async (req, res) => {
         res.redirect('/files')
     } catch (error) {
         console.log(error)
-
     }
 }
 app.post('/files/:userId', upload.single("imgUrl"), filesCtrl.createListing)
